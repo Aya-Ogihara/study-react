@@ -1,6 +1,7 @@
-import styles from './Main.module.css';
-import { Links } from '../components/Links';
-import { Headline } from '../components/Headline';
+import styles from 'src/components/Main/Main.module.css';
+//import { Links } from '../Links';
+import { Headline } from 'src/components/Headline';
+import { Links } from 'src/components/Links';
 
 export function Main(props) {
   return (
@@ -10,7 +11,6 @@ export function Main(props) {
         >
           <code className={styles.code}>pages/{props.page}.js</code>
         </Headline>
-
         <Links />
       </main>
   );
