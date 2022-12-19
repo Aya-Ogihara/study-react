@@ -21,12 +21,11 @@ export default function Home() {
         <title>Index page</title>
       </Head>
       <Header />
-      <a
-        href='/about'
+      <burron
         onClick={handleClick}
       >
         Button
-      </a>
+      </burron>
       <Main page='index' />
       <Footer />
     </div>
