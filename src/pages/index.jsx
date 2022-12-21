@@ -3,28 +3,25 @@ import styles from 'src/styles/Home.module.css';
 import { Footer } from 'src/components/Footer';
 import { Main } from 'src/components/Main';
 import { Header } from 'src/components/Header';
-import { useCallback, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 
 export default function Home() {
-  const foo = 1
+  const [count, setCount] = useState(1)
 
-  const handleClick = useCallback((e) => {
-    console.log(e.target.innerText)
-    e.preventDefault();
-    alert(foo);
-  }, [])
+  const handleAddClick = (e) => {
+    setCount((count) => count + 1);
+  }
+  const handleDeductClick = (e) => {
+    setCount((count) => count - 1);
+  }
 
   useEffect(() => {
-    console.log('mount')
     document.body.style.backgroundColor = 'lightblue';
-
     return () => {
-      console.log('unmount')
       document.body.style.backgroundColor = '';
     }
   }, []);
-
 
   return (
     <div className={styles.container}>
@@ -32,10 +29,16 @@ export default function Home() {
         <title>Index page</title>
       </Head>
       <Header />
+      <h1>{count}</h1>
       <button
-        onClick={handleClick}
+        onClick={handleAddClick}
       >
-        Button
+        +
+      </button>
+      <button
+        onClick={handleDeductClick}
+      >
+        -
       </button>
       <Main page='index' />
       <Footer />
