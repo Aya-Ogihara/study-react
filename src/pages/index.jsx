@@ -3,18 +3,23 @@ import styles from 'src/styles/Home.module.css';
 import { Footer } from 'src/components/Footer';
 import { Main } from 'src/components/Main';
 import { Header } from 'src/components/Header';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 
 export default function Home() {
-  const [count, setCount] = useState(1)
+  const [count, setCount] = useState(3)
 
-  const handleAddClick = (e) => {
-    setCount((count) => count + 1);
-  }
-  const handleDeductClick = (e) => {
-    setCount((count) => count - 1);
-  }
+  const handleAddClick = useCallback(() => {
+    if(count < 10) { 
+      setCount((count) => count + 1);
+    }
+  }, [count])
+
+  const handleDeductClick = useCallback(() => {
+    if(count > 3) {
+      setCount((count) => count - 1);
+    }
+  },[count])
 
   useEffect(() => {
     document.body.style.backgroundColor = 'lightblue';
