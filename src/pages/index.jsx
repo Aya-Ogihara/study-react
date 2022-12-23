@@ -5,27 +5,42 @@ import { Main } from 'src/components/Main';
 import { Header } from 'src/components/Header';
 import { useCallback, useEffect, useState } from 'react';
 
-
 export default function Home() {
-  const [count, setCount] = useState(3)
+  const [count, setCount] = useState(3);
+  const [text, setText] = useState('');
+  const [isShow, setIsShow] = useState(false);
 
+  //User events
   const handleAddClick = useCallback(() => {
-    if(count < 10) { 
+    if (count < 10) {
       setCount((count) => count + 1);
     }
-  }, [count])
+  }, [count]);
 
   const handleDeductClick = useCallback(() => {
-    if(count > 3) {
+    if (count > 3) {
       setCount((count) => count - 1);
     }
-  },[count])
+  }, [count]);
+
+  const handleChange = useCallback((e) => {
+    if (e.target.value.length > 5) {
+      alert('Too long!');
+      return;
+    }
+    setText(e.target.value.trim());
+  }, []);
+
+  const handleDisplay = useCallback(() => {
+    setIsShow((isShow) => !isShow);
+  }, []);
+  //User events -end
 
   useEffect(() => {
     document.body.style.backgroundColor = 'lightblue';
     return () => {
       document.body.style.backgroundColor = '';
-    }
+    };
   }, []);
 
   return (
@@ -34,17 +49,12 @@ export default function Home() {
         <title>Index page</title>
       </Head>
       <Header />
-      <h1>{count}</h1>
-      <button
-        onClick={handleAddClick}
-      >
-        +
-      </button>
-      <button
-        onClick={handleDeductClick}
-      >
-        -
-      </button>
+      <button onClick={handleDisplay}>{isShow? 'Hide count': 'Display count'}</button><br />
+      {isShow ? <h1>{count}</h1> : null}
+      <button onClick={handleAddClick}>+</button>
+      <button onClick={handleDeductClick}>-</button>
+      <br />
+      <input type='text' value={text} onChange={handleChange} />
       <Main page='index' />
       <Footer />
     </div>
