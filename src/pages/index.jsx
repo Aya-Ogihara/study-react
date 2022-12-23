@@ -9,6 +9,7 @@ export default function Home() {
   const [count, setCount] = useState(3);
   const [text, setText] = useState('');
   const [isShow, setIsShow] = useState(false);
+  const [array, setArray] = useState([]);
 
   //User events
   const handleAddClick = useCallback(() => {
@@ -34,6 +35,16 @@ export default function Home() {
   const handleDisplay = useCallback(() => {
     setIsShow((prevIsShow) => !prevIsShow);
   }, []);
+
+  const handleAddItem = useCallback(() => {
+    setArray((prevArray) => {
+      if(prevArray.some(item => item === text)) {
+        alert('Already exist, please enter different value');
+        return prevArray
+      }
+      return [...prevArray, text];
+    })
+  }, [text]);
   //User events -end
 
   useEffect(() => {
@@ -54,7 +65,15 @@ export default function Home() {
       <button onClick={handleAddClick}>+</button>
       <button onClick={handleDeductClick}>-</button>
       <br />
-      <input type='text' value={text} onChange={handleChange} />
+      <input type='text' value={text} onChange={handleChange} /><br />
+      <button onClick={handleAddItem}>Add item</button>
+      <ul>
+        {array.map(item => {
+          return (
+            <li key={item}>{item}</li>
+          )
+        })}
+      </ul>
       <Main page='index' />
       <Footer />
     </div>
