@@ -13,13 +13,13 @@ export default function Home() {
   //User events
   const handleAddClick = useCallback(() => {
     if (count < 10) {
-      setCount((count) => count + 1);
+      setCount((prevCount) => prevCount + 1);
     }
   }, [count]);
 
   const handleDeductClick = useCallback(() => {
     if (count > 3) {
-      setCount((count) => count - 1);
+      setCount((prevCount) => prevCount - 1);
     }
   }, [count]);
 
