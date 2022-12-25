@@ -8,9 +8,11 @@ export function Headline(props) {
         {props.page} page
       </h1>
       <p className={styles.description}>
-        Get started by editing{' '}
+        You have{' '}
         {props.children}
+        {' '} items
       </p>
+      <button onClick={props.reduceItem}>Remove item</button>
     </div>
   )
 }
