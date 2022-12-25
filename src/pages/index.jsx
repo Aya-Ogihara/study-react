@@ -4,7 +4,7 @@ import { Footer } from 'src/components/Footer';
 import { Main } from 'src/components/Main';
 import { Header } from 'src/components/Header';
 
-export default function Home({
+const Home = ({
   count,
   isShow,
   handleAddClick,
@@ -14,7 +14,7 @@ export default function Home({
   array,
   handleChange,
   handleAddItem,
-}) {
+}) => {
   return (
     <div className={styles.container}>
       <Head>
@@ -42,3 +42,5 @@ export default function Home({
     </div>
   );
 }
+
+export default Home;

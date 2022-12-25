@@ -14,7 +14,7 @@ export const useInputArray = () => {
 
   const handleAddItem = useCallback(() => {
     setArray((prevArray) => {
-      if (prevArray.some((item) => item === text)) {
+      if (prevArray.includes(text)) {
         alert('Already exist, please enter different value');
         return prevArray;
       }
